@@ -29,4 +29,5 @@ The boxes will be set up in a private network, each box can communicate
 with all other boxes using both IP addresses and hostnames.
 
 Passwordless SUDO has been set up for user vagrant.
+
 Passwordless SSH between boxes has been set up for user root.

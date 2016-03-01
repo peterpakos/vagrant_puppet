@@ -1,9 +1,7 @@
 # vagrant_puppet
-Vagrant setup spinning up single/multiple boxes and provisioning them with
-Puppet
+Vagrant setup spinning up single/multiple boxes and provisioning them with Puppet
 
-You can choose operating system by setting `OS` variable in the top of the
-Vagrantfile:
+You can choose operating system by setting `OS` variable in the top of the Vagrantfile:
 ```
 - C6    Centos 6      (puppetlabs/centos-6.6-64-nocm)
 - C7    Centos 7      (puppetlabs/centos-7.2-64-nocm)
@@ -25,8 +23,7 @@ RAM = 2048                            # Amount of RAM for each box
 
 List of Puppet modules can be set by editing file `files/site.pp`.
 
-The boxes will be set up in a private network, each box can communicate
-with all other boxes using both IP addresses and hostnames.
+The boxes will be set up in a private network, each box can communicate with all other boxes using both IP addresses and hostnames.
 
 Passwordless SUDO has been set up for user vagrant.
 

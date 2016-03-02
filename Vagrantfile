@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-OS="D7"
+OS="C7"
 
 case OS
 when "C6"
@@ -16,6 +16,9 @@ when "D7"
   BOX = "puppetlabs/debian-7.8-64-nocm"
 when "D8"
   BOX = "puppetlabs/debian-8.2-64-nocm"
+else
+  puts "OS label #{OS} not supported, exiting..."
+  exit 1
 end
 
 NUM_NODES = 1
@@ -55,19 +58,19 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/*
 OS="#{OS}"
 case "$OS" in
-"C6" )
+"C6")
   if ! type puppet &>/dev/null; then
     yum -y install https://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
     yum -y install puppet
   fi
   ;;
-"C7" )
+"C7")
   if ! type puppet &>/dev/null; then
     yum -y install https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
     yum -y install puppet
   fi
   ;;
-"D7" | "D8" | "U12" | "U14" )
+"D7" | "D8" | "U12" | "U14")
   if ! type puppet &>/dev/null; then
     apt-get update
     apt-get -y install puppet

@@ -1,3 +1,3 @@
 node default {
-  include ldap::ipa
+  #include puppet::module
 }

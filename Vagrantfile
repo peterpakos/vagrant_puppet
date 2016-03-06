@@ -83,7 +83,6 @@ SCRIPT
         puppet.module_path    = ["~/git/puppet-common", "~/git/puppet-sensitive"]
         puppet.manifests_path = "files"
         puppet.manifest_file  = "site.pp"
-        #puppet.options        = "--disable_warnings deprecations"
       end
     end
   end

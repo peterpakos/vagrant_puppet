@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-OS="C7"
+OS = ENV["OS"] || "C7"
 
 case OS
 when "C6"
@@ -21,7 +21,7 @@ else
   exit 1
 end
 
-NUM_NODES = 1
+NUM_NODES = ENV["NUM_NODES"] || "1"
 IP_ADDR_PREFIX = "192.168.69.1"
 DOMAIN = "domain"
 HOSTNAME_PREFIX = "node"

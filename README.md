@@ -1,12 +1,12 @@
 # vagrant_puppet
 Vagrant setup spinning up single/multiple boxes and provisioning them with Puppet
 
-You can choose operating system by setting `OS` variable in the top of the Vagrantfile:
+You can choose operating system by setting environment variable `OS` or editing it directly in the top of the Vagrantfile:
 ```
-- C6    Centos 6      (puppetlabs/centos-6.6-64-nocm)
-- C7    Centos 7      (puppetlabs/centos-7.2-64-nocm)
-- D7    Debian 7      (puppetlabs/debian-7.8-64-nocm)
-- D8    Debian 8      (puppetlabs/debian-8.2-64-nocm)
+- C6    Centos 6.6    (puppetlabs/centos-6.6-64-nocm)
+- C7    Centos 7.2    (puppetlabs/centos-7.2-64-nocm)
+- D7    Debian 7.8    (puppetlabs/debian-7.8-64-nocm)
+- D8    Debian 8.2    (puppetlabs/debian-8.2-64-nocm)
 - U12   Ubuntu 12.04  (puppetlabs/ubuntu-12.04-64-nocm)
 - U14   Ubuntu 14.04  (puppetlabs/ubuntu-14.04-64-nocm)
 ```

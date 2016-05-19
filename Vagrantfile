@@ -32,7 +32,7 @@ Vagrant.configure(2) do |config|
 
   config.ssh.insert_key = false
 
-	config.vm.box = BOX
+  config.vm.box = BOX
   config.vm.synced_folder "~/git/puppet-common/", "/puppet"
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
@@ -50,7 +50,7 @@ Vagrant.configure(2) do |config|
 $script = <<SCRIPT
 echo "127.0.0.1 localhost" > /etc/hosts
 for i in {1..#{NUM_NODES}}; do
-	echo "#{IP_ADDR_PREFIX}$i #{HOSTNAME_PREFIX}$i.#{DOMAIN} #{HOSTNAME_PREFIX}$i" >> /etc/hosts
+  echo "#{IP_ADDR_PREFIX}$i #{HOSTNAME_PREFIX}$i.#{DOMAIN} #{HOSTNAME_PREFIX}$i" >> /etc/hosts
 done
 cp -a /vagrant/files/.ssh ~/
 chown -R root:root ~/.ssh

@@ -19,6 +19,9 @@ DOMAIN = "domain"                     # Domain name
 HOSTNAME_PREFIX = "node"              # Hostname prefix
 CORES = 2                             # Number of CPU cores for each box
 RAM = 2048                            # Amount of RAM for each box
+
+EXTRA_DISK_SIZE = 2048                # Second hard drive (set 0 to disable)
+EXTRA_DISK_FILE = "sdb.vdi"           # Hard drive filename
 ```
 
 List of Puppet modules can be set by editing file `files/site.pp`.

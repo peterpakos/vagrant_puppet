@@ -1,3 +1,4 @@
 node default {
-  #include puppet::module
+  #include ldap
+  #include jenkins::docker_host
 }

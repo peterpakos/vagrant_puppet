@@ -28,13 +28,25 @@ HOSTNAME_PREFIX = "node"
 CORES = 2
 RAM = 2048
 
+# Second hard drive. To disable, set its size to 0.
+EXTRA_DISK_SIZE = 0
+EXTRA_DISK_FILE = "sdb.vdi"
+
 Vagrant.configure(2) do |config|
 
   config.ssh.insert_key = false
 
   config.vm.box = BOX
-  config.vm.synced_folder "~/git/puppet-common/", "/puppet"
+  config.vm.synced_folder "~/git/puppet-common/", "/puppet-common"
+  config.vm.synced_folder "~/git/puppet-sensitive/", "/puppet-sensitive"
   config.vm.provider "virtualbox" do |vb|
+    if EXTRA_DISK_SIZE > 0
+      unless File.exist?(EXTRA_DISK_FILE)
+        vb.customize ["createhd", "--filename", EXTRA_DISK_FILE, "--size", EXTRA_DISK_SIZE]
+        vb.customize ["storagectl", :id, "--name", "SATA Controller", "--add", "sata"]
+      end
+      vb.customize ["storageattach", :id, "--storagectl", "SATA Controller", "--port", 1, "--device", 0, "--type", "hdd", "--medium", EXTRA_DISK_FILE]
+    end
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
     vb.customize ["modifyvm", :id, "--cpus", CORES]
     vb.customize ["modifyvm", :id, "--memory", RAM]

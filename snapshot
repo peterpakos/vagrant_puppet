@@ -1,0 +1,62 @@
+#!/bin/bash
+
+set -e
+
+SCRIPT_NAME=$(basename "${0}")
+COMMAND="${1}"
+SNAPSHOT_NAME="${2}"
+
+usage () {
+    cat <<HELP
+Usage: ./${SCRIPT_NAME} <COMMAND> [<SNAPSHOT_NAME>]
+AVAILABLE COMMANDS:
+take <SNAPSHOT_NAME>    Take new snapshot with specific name
+go <SNAPSHOT_NAME>      Roll-back to snapshot
+delete <SNAPSHOT_NAME>  Delete snapshot
+list                    List all existing snapshots
+HELP
+}
+
+if ! vagrant plugin list | grep 'vagrant-vbox-snapshot' &>/dev/null; then
+	vagrant plugin install vagrant-vbox-snapshot
+fi
+
+if [ ! -n "${COMMAND}" ]; then
+	usage
+	exit 1
+fi
+
+case "${COMMAND}" in
+
+    take)
+		if [ ! -n "${SNAPSHOT_NAME}" ]; then
+			usage
+			exit 1
+		fi
+	  vagrant snapshot take "${SNAPSHOT_NAME}"
+    ;;
+    go)
+		if [ ! -n "${SNAPSHOT_NAME}" ]; then
+			usage
+			exit 1
+		fi
+		vagrant snapshot go "${SNAPSHOT_NAME}"
+    ;;
+	  delete)
+		if [ ! -n "${SNAPSHOT_NAME}" ]; then
+			usage
+			exit 1
+		fi
+	  echo "Deleting snapshot ${SNAPSHOT_NAME}:"
+			vagrant snapshot delete "${SNAPSHOT_NAME}"
+		;;
+    list)
+			vagrant snapshot list "${HOSTNAME_PREFIX}${i}"
+    ;;
+    *)
+    usage
+    exit 1
+    ;;
+esac
+
+exit 0

@@ -5,17 +5,19 @@ OS = ENV["OS"] || "C7"
 
 case OS
 when "C6"
-  BOX = "puppetlabs/centos-6.6-64-nocm"
+  BOX = "centos/6"
 when "C7"
-  BOX = "puppetlabs/centos-7.2-64-nocm"
+  BOX = "centos/7"
 when "U12"
-  BOX = "puppetlabs/ubuntu-12.04-64-nocm"
+  BOX = "ubuntu/precise64"
 when "U14"
-  BOX = "puppetlabs/ubuntu-14.04-64-nocm"
+  BOX = "ubuntu/trusty64"
+when "U16"
+  BOX = "ubuntu/xenial64"
 when "D7"
-  BOX = "puppetlabs/debian-7.8-64-nocm"
+  BOX = "debian/wheezy64"
 when "D8"
-  BOX = "puppetlabs/debian-8.2-64-nocm"
+  BOX = "debian/jessie64"
 else
   puts "OS label #{OS} not supported, exiting..."
   exit 1
@@ -23,7 +25,7 @@ end
 
 NUM_NODES = ENV["NUM_NODES"] || "1"
 IP_ADDR_PREFIX = "192.168.69.1"
-DOMAIN = "domain"
+DOMAIN = "domain.com"
 HOSTNAME_PREFIX = "node"
 CORES = 2
 RAM = 2048
@@ -82,7 +84,7 @@ case "$OS" in
     yum -y install puppet
   fi
   ;;
-"D7" | "D8" | "U12" | "U14")
+"D7" | "D8" | "U12" | "U14" | "U16")
   if ! type puppet &>/dev/null; then
     apt-get update
     apt-get -y install puppet

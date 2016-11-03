@@ -23,7 +23,7 @@ else
   exit 1
 end
 
-NUM_NODES = ENV["N"] || "1"
+N = ENV["N"] || "1"
 IP_ADDR_PREFIX = "192.168.69.1"
 DOMAIN = "domain.com"
 HOSTNAME_PREFIX = "node"
@@ -54,15 +54,16 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--memory", RAM]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
+
   $message = "List of #{BOX} nodes:"
-  (1..NUM_NODES.to_i).each do |i|
+  (1..N.to_i).each do |i|
     $message = $message + "\n - #{HOSTNAME_PREFIX}#{i}.#{DOMAIN} (#{IP_ADDR_PREFIX}#{i})"
   end
   config.vm.define "#{HOSTNAME_PREFIX}1.#{DOMAIN}" do |node|
     node.vm.post_up_message = $message
   end
 
-  (1..NUM_NODES.to_i).each do |i|
+  (1..N.to_i).each do |i|
     nodeName = HOSTNAME_PREFIX + "#{i}" + "." + DOMAIN
     ipAddr = IP_ADDR_PREFIX + "#{i}"
     config.vm.define nodeName do |node|
@@ -70,7 +71,7 @@ Vagrant.configure(2) do |config|
       node.vm.network "private_network", ip: ipAddr
 $script = <<SCRIPT
 echo "127.0.0.1 localhost" > /etc/hosts
-for i in {1..#{NUM_NODES}}; do
+for i in {1..#{N}}; do
   echo "#{IP_ADDR_PREFIX}$i #{HOSTNAME_PREFIX}$i.#{DOMAIN} #{HOSTNAME_PREFIX}$i" >> /etc/hosts
 done
 cp -a /vagrant/files/.ssh ~/

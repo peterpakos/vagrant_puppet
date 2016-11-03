@@ -23,7 +23,7 @@ else
   exit 1
 end
 
-NUM_NODES = ENV["NUM_NODES"] || "1"
+NUM_NODES = ENV["N"] || "1"
 IP_ADDR_PREFIX = "192.168.69.1"
 DOMAIN = "domain.com"
 HOSTNAME_PREFIX = "node"
@@ -53,6 +53,13 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--cpus", CORES]
     vb.customize ["modifyvm", :id, "--memory", RAM]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+  $message = "List of #{BOX} nodes:"
+  (1..NUM_NODES.to_i).each do |i|
+    $message = $message + "\n - #{HOSTNAME_PREFIX}#{i}.#{DOMAIN} (#{IP_ADDR_PREFIX}#{i})"
+  end
+  config.vm.define "#{HOSTNAME_PREFIX}1.#{DOMAIN}" do |node|
+    node.vm.post_up_message = $message
   end
 
   (1..NUM_NODES.to_i).each do |i|

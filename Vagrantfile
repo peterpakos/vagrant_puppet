@@ -22,8 +22,12 @@ when "D7"
   BOX = "wandisco/debian-7-64"
 when "D8"
   BOX = "wandisco/debian-8-64"
+when "D9"
+  BOX = "wandisco/debian-9-64"
 when "S11"
   BOX = "wandisco/sles-11.3-64"
+when "F25"
+  BOX = "wandisco/fedora-25-64"
 else
   puts "OS label #{OS} not supported, exiting..."
   exit 1
@@ -32,9 +36,9 @@ end
 puts "==> OS: #{OS}, BOX: #{BOX}"
 
 N = ENV["N"] || "1"
-IP_ADDR_PREFIX = "192.168.254.1"
+IP_ADDR_PREFIX = "192.168.254.11"
 DOMAIN = "domain.com"
-HOSTNAME_PREFIX = "node"
+HOSTNAME_PREFIX = "#{OS}-node".downcase
 CORES = 2
 RAM = 2048
 
@@ -46,7 +50,6 @@ Vagrant.configure(2) do |config|
 
   config.ssh.insert_key = false
 
-  #config.vm.box_version = "170110.03"
   config.vm.box = BOX
   config.vm.synced_folder "../puppet-qe/modules/", "/puppet-qe"
   config.vm.synced_folder "../puppet-common/", "/puppet-common"
@@ -91,8 +94,10 @@ chmod 600 ~/.ssh/*
 SCRIPT
       node.vm.provision "shell", inline: $script
       node.vm.provision "puppet" do |puppet|
-        puppet.module_path    = ["../puppet-common", "../puppet-sensitive", "../puppet-qe/modules/"]
+        puppet.module_path    = ["../puppet-common", "../puppet-sensitive"]
         puppet.options = "--disable_warnings deprecations"
+        puppet.environment_path = "environments"
+        puppet.environment = "default"
       end
     end
   end

@@ -26,6 +26,8 @@ when "D9"
   BOX = "wandisco/debian-9-64"
 when "S11"
   BOX = "wandisco/sles-11.3-64"
+when "S12"
+  BOX = "wandisco/sles-12.1-64"
 when "F25"
   BOX = "wandisco/fedora-25-64"
 else

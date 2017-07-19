@@ -15,6 +15,7 @@ You can choose OS by either setting environment variable `OS` or directly editin
 - U14   Ubuntu 14.04  (wandisco/ubuntu-14.04-64)
 - U16   Ubuntu 16.04  (wandisco/ubuntu-16.04-64)
 - S11   SLES 11 SP3   (wandisco/sles-11.3-64)
+- S12   SLES 12 SP1   (wandisco/sles-12.1-64)
 - F25   Fedora 25     (wandisco/fedora-25-64)
 ```
 

@@ -93,6 +93,7 @@ cp -a /vagrant/files/.ssh ~/
 chown -R root:root ~/.ssh
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/*
+which apt-get &>/dev/null && apt-get update
 SCRIPT
       node.vm.provision "shell", inline: $script
       node.vm.provision "puppet" do |puppet|

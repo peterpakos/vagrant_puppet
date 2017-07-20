@@ -1,3 +1,3 @@
 node default {
-  include ldap
+  include openldap::testldap
 }

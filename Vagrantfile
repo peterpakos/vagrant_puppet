@@ -93,11 +93,11 @@ cp -a /vagrant/files/.ssh ~/
 chown -R root:root ~/.ssh
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/*
-which apt-get &>/dev/null && apt-get update
+which apt-get &>/dev/null && apt-get update || true
 SCRIPT
       node.vm.provision "shell", inline: $script
       node.vm.provision "puppet" do |puppet|
-        puppet.module_path    = ["../puppet-common", "../puppet-sensitive"]
+        puppet.module_path    = ["../puppet-common", "../puppet-sensitive", "../puppet-qe/modules"]
         puppet.options = "--disable_warnings deprecations"
         puppet.environment_path = "environments"
         puppet.environment = "default"

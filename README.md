@@ -6,7 +6,7 @@ You can choose OS by either setting environment variable `OS` or directly editin
 ```
 - C5    Centos 5      (wandisco/centos-5-64)
 - C6    Centos 6      (wandisco/centos-6-64)
-- C7    Centos 7      (wandisco/centos-7-64)
+- C7    Centos 7      (wandisco/centos-7)
 - D6    Debian 6      (wandisco/debian-6-64)
 - D7    Debian 7      (wandisco/debian-7-64)
 - D8    Debian 8      (wandisco/debian-8-64)
@@ -29,8 +29,8 @@ DOMAIN = "domain.com"                    # Domain name
 CORES = 2                                # Number of CPU cores for each box
 RAM = 2048                               # Amount of RAM for each box
 
-EXTRA_DISK_SIZE = 2048                   # Second hard drive (set 0 to disable)
-EXTRA_DISK_FILE = "sdb.vdi"              # Hard drive filename
+EXTRA_DISK_SIZE = 10000                  # Second hard drive size in MB (set 0 to disable)
+EXTRA_DISK_FILE = "sdb.vdi"              # Second hard drive filename
 ```
 
 ## Highlights

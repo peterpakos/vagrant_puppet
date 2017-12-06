@@ -9,7 +9,7 @@ when "C5"
 when "C6"
   BOX = "wandisco/centos-6-64"
 when "C7"
-  BOX = "wandisco/centos-7-64"
+  BOX = "wandisco/centos-7"
 when "U12"
   BOX = "wandisco/ubuntu-12.04-64"
 when "U14"
@@ -101,6 +101,10 @@ SCRIPT
         puppet.options = "--disable_warnings deprecations"
         puppet.environment_path = "environments"
         puppet.environment = "default"
+        #puppet.facter = {
+        #  "docker_direct_lvm"   => "yes",
+        #  "docker_jenkins_port" => "31337"
+        #}
       end
     end
   end

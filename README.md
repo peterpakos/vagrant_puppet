@@ -17,19 +17,22 @@ You can choose OS by either setting environment variable `OS` or directly editin
 - S11   SLES 11 SP3   (wandisco/sles-11.3-64)
 - S12   SLES 12 SP1   (wandisco/sles-12.1-64)
 - F25   Fedora 25     (wandisco/fedora-25-64)
+- F26   Fedora 26     (wandisco/fedora-26)
+- F27   Fedora 27     (wandisco/fedora-27)
+
 ```
 
 ## Variables
 The following variables can be further adjusted to your needs:
 ```
-N = 1                                    # Number of nodes to be created
+N = ENV["N"] || "1"                      # Number of nodes to be created
 IP_ADDR_PREFIX = "192.168.254.11"        # IP address prefix
 HOSTNAME_PREFIX = "#{OS}-node".downcase  # Hostname prefix
-DOMAIN = "domain.com"                    # Domain name
+DOMAIN = "example.com"                   # Domain name
 CORES = 2                                # Number of CPU cores for each box
 RAM = 2048                               # Amount of RAM for each box
 
-EXTRA_DISK_SIZE = 10000                  # Second hard drive size in MB (set 0 to disable)
+EXTRA_DISK_SIZE = 0                      # Second hard drive size in MB (set 0 to disable)
 EXTRA_DISK_FILE = "sdb.vdi"              # Second hard drive filename
 ```
 

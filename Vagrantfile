@@ -1,35 +1,39 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-OS = ENV["OS"] || "C7"
+OS = (ENV["OS"] || "C7").downcase
 
 case OS
-when "C5"
+when "c5"
   BOX = "wandisco/centos-5-64"
-when "C6"
+when "c6"
   BOX = "wandisco/centos-6-64"
-when "C7"
+when "c7"
   BOX = "wandisco/centos-7"
-when "U12"
+when "u12"
   BOX = "wandisco/ubuntu-12.04-64"
-when "U14"
+when "u14"
   BOX = "wandisco/ubuntu-14.04-64"
-when "U16"
+when "u16"
   BOX = "wandisco/ubuntu-16.04-64"
-when "D6"
+when "d6"
   BOX = "wandisco/debian-6-64"
-when "D7"
+when "d7"
   BOX = "wandisco/debian-7-64"
-when "D8"
+when "d8"
   BOX = "wandisco/debian-8-64"
-when "D9"
+when "d9"
   BOX = "wandisco/debian-9-64"
-when "S11"
+when "s11"
   BOX = "wandisco/sles-11.3-64"
-when "S12"
+when "s12"
   BOX = "wandisco/sles-12.1-64"
-when "F25"
+when "f25"
   BOX = "wandisco/fedora-25-64"
+when "f26"
+  BOX = "wandisco/fedora-26"
+when "f27"
+  BOX = "wandisco/fedora-27"
 else
   puts "OS label #{OS} not supported, exiting..."
   exit 1
@@ -39,7 +43,7 @@ puts "==> OS: #{OS}, BOX: #{BOX}"
 
 N = ENV["N"] || "1"
 IP_ADDR_PREFIX = "192.168.254.11"
-DOMAIN = "domain.com"
+DOMAIN = "example.com"
 HOSTNAME_PREFIX = "#{OS}-node".downcase
 CORES = 2
 RAM = 2048

@@ -34,6 +34,10 @@ when "f26"
   BOX = "wandisco/fedora-26"
 when "f27"
   BOX = "wandisco/fedora-27"
+when "f28"
+  BOX = "wandisco/fedora-28"
+when "f29"
+  BOX = "wandisco/fedora-29"
 else
   puts "OS label #{OS} not supported, exiting..."
   exit 1

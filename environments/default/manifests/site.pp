@@ -1,5 +1,5 @@
-#node default {
-#  class {'java_new':
-#    version => 'jdk7',
-#  }
-#}
+node default {
+  #class { 'java_new':
+  #  version => 'openjdk8',
+  #}
+}
